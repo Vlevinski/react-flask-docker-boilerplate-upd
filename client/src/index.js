@@ -42,7 +42,7 @@ class App extends React.Component {
         <ul>
           {items.map(item => (
             <li key={item.name}>
-              {item.name} {item.price}
+              Category :{item.category}, name:{item.name}, price:{item.price}, stocked: {item.stocked}
             </li>
           ))}
         </ul>
