@@ -1,6 +1,9 @@
 from flask import Flask, jsonify, make_response
 
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
 
 false, true = False, True
 category, price, stocked, name = "category", "price", "stocked", "name"
@@ -28,7 +31,7 @@ def test_response():
     response = make_response(jsonify(sample_response))
 
     # Add Access-Control-Allow-Origin header to allow cross-site request
-    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+    #response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
 
     # Mozilla provides good references for Access Control at:
     # https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS

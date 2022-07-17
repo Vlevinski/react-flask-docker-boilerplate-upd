@@ -1,16 +1,31 @@
 version: '3'
 
 services:
+  #api:
+    #build: api
+    #command: ["flask", "run", "--host=0.0.0.0"]
+    #volumes:
+    #  - ./api:/backend
+    #environment:
+    #  - FLASK_ENV=development
+    #  - FLASK_APP=app.py
+    #ports:
+    #  - "5000:5000"
   api:
-    build: api
-    command: ["flask", "run", "--host=0.0.0.0"]
+    container_name: api
+    build: ./api
     volumes:
-      - ./api:/backend
-    environment:
-      - FLASK_ENV=development
-      - FLASK_APP=app.py
+      - ./api:/api
     ports:
-      - "5000:5000"
+      - 5000:5000
+    #environment:
+    #  - DATABASE_URL=postgresql://user:password@db:5432/database
+    #  - FLASK_ENV=development
+    #  - FLASK_APP=app.py
+    #depends_on:
+    #  - db
+    command: ["flask", "run", "--host=0.0.0.0"]      
+      
 
   client:
     build: client
@@ -24,6 +39,7 @@ services:
       - '3000:3000'
     depends_on:
       - api
+ 
 
 volumes:
   node-modules:

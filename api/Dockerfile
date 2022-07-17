@@ -1,7 +1,14 @@
+# syntax=docker/dockerfile:1
+
 FROM python:3.9
-RUN mkdir /backend
-WORKDIR /backend
-COPY requirements.txt /backend/requirements.txt
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
+
+WORKDIR /api
+
+COPY requirements.txt requirements.txt
+
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
 COPY . .
+
+CMD ["python", "app.py"]
